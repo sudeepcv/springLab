@@ -3,6 +3,8 @@ import moment from 'moment'
 import {ErrorMessage, Field, Form, Formik} from 'formik'
 import TodoService  from '../../api/todo/TodoService'
 import AuthenticationService from './AuthenticationService'
+import Footer from './Footer'
+import Header from './Header'
 
 const Todo = ({history,match:{params:{id}}}) => {
     
@@ -50,6 +52,14 @@ const Todo = ({history,match:{params:{id}}}) => {
 
     }
     return (
+
+        <>
+
+        <Header />
+        <main role="main" className="flex-shrink-0">
+            <div className="container" style={{ "paddingTop": "60px" }}>
+
+
         <div>
             <h1>Todo</h1>
             <div className="container">
@@ -103,6 +113,12 @@ const Todo = ({history,match:{params:{id}}}) => {
 
             </div>
         </div>
+
+        </div>
+</main>
+<Footer />
+</>
+
     )
 }
 

@@ -5,6 +5,8 @@ import {
   
 } from "react-router-dom";
 import HelloWorldService from '../../api/todo/HelloWorldService'
+import Footer from './Footer'
+import Header from './Header'
 
 const Home = (props) => {
 
@@ -21,6 +23,12 @@ const Home = (props) => {
         })
     }
     return (
+        <>
+
+        <Header />
+        <main role="main" className="flex-shrink-0">
+            <div className="container" style={{ "paddingTop": "60px" }}>
+
         <div>
             <h1>Hi, {props.match.params.name}</h1>
 
@@ -35,6 +43,11 @@ const Home = (props) => {
 
 
         </div>
+
+        </div>
+            </main>
+            <Footer />
+            </>
     )
 }
 export default Home

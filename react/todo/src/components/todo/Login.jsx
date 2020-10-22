@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import AuthenticationService from './AuthenticationService'
+import Footer from './Footer'
+import Header from './Header'
 const Login = props => {
 
-    const [username, setUsername] = useState("sudeepcv")
-    const [password, setPassword] = useState("sudeepcv")
+    const [username, setUsername] = useState("sudeep")
+    const [password, setPassword] = useState("sudeep")
     const [isError, setError] = useState(false)
     const [isLoginSuccess, setLoginSuccess] = useState(false)
 
@@ -18,22 +20,45 @@ const Login = props => {
     }
 
     const loginClick = () => {
-        if (username === "sudeepcv" && password === "sudeepcv") {
-            AuthenticationService.registerSuccessfulLogin("sudeepcv", "sudeepcv")
-            setLoginSuccess(true)
-            setError(false)
 
-            props.history.push(`/home/${'sudeepcv'}`)
-            window.location.reload(false)
+        AuthenticationService.executeBasicAuthenticationService(username,password).then(
+            ()=>{
+                AuthenticationService.registerSuccessfulLogin(username, password)
+                setLoginSuccess(true)
+                setError(false)
+                props.history.push(`/home/${'sudeepcv'}`)
 
-            // props.history.pushState(null, `/home/${'sudeepcv'}`);
-        } else {
-            setError(true)
+            }
+        ).catch(err=>{console.log("something went wrong while login")
+
+        setError(true)
             setLoginSuccess(false)
-        }
+    })
+
+
+        // if (username === "sudeepcv" && password === "sudeepcv") {
+        //     AuthenticationService.registerSuccessfulLogin(username, password)
+        //     setLoginSuccess(true)
+        //     setError(false)
+
+        //     props.history.push(`/home/${'sudeepcv'}`)
+        //     // window.location.reload(false)
+
+        //     // props.history.pushState(null, `/home/${'sudeepcv'}`);
+        // } else {
+        //     setError(true)
+        //     setLoginSuccess(false)
+        // }
 
     }
     return (
+
+        <>
+
+        <Header />
+        <main role="main" className="flex-shrink-0">
+            <div className="container" style={{ "paddingTop": "60px" }}>
+
         <div>
             <h1> Login</h1>
             <div className="container" >
@@ -46,6 +71,12 @@ const Login = props => {
                 </div>
             </div>
         </div>
+
+        </div>
+            </main>
+            <Footer />
+            </>
+
     )
 }
 export default Login

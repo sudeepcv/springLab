@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import TodoService from '../../api/todo/TodoService'
 import AuthenticationService from './AuthenticationService'
 import moment from 'moment'
+import Footer from './Footer'
+import Header from './Header'
 
 const ToDoList = ({history}) => {
 
@@ -29,6 +31,12 @@ const ToDoList = ({history}) => {
 
 
     return (
+        <>
+
+        <Header />
+        <main role="main" className="flex-shrink-0">
+            <div className="container" style={{ "paddingTop": "60px" }}>
+
         <div className="container">
             {message&& <div className="alert alert-warning">{message}</div>}
 
@@ -83,6 +91,14 @@ const ToDoList = ({history}) => {
 
             
         </div>
+
+
+
+</div>
+</main>
+<Footer />
+</>
+
     )
 }
 
